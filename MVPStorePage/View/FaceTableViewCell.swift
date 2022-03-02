@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DynamicInsertDelegate {
-    func added()
+    func added(in table: UITableView, data: Int)
 }
 
 class FaceTableViewCell: UITableViewCell {
@@ -88,11 +88,10 @@ extension FaceTableViewCell: UITableViewDataSource, UITableViewDelegate {
     }
     
     @objc private func addItens() {
+        myTableView.beginUpdates()
         let last = list.count + 1
         list.append("\(last)")
-//        delegate?.added()
-        myTableView.beginUpdates()
-        self.myTableView.insertRows(at: [IndexPath(row: self.list.count - 1, section: 0)], with: .automatic)
+        delegate?.added(in: myTableView, data: list.count - 1)
         myTableView.endUpdates()
     }
 }
