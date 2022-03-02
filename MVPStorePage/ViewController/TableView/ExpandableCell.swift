@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ExpandableDelegate {
+    func didTapButton()
+}
+
 struct ExpandableContent {
     var title: String
     var subtitle: String
@@ -23,9 +27,15 @@ struct ExpandableContent {
 
 class ExpandableCell: UITableViewCell {
     
+    var delegate: ExpandableDelegate?
     private var titleLabel: UILabel = {
         let lbl = UILabel()
         return lbl
+    }()
+    private var buttonLink: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Click", for: .normal)
+        return btn
     }()
     private var subtitleLabel: UILabel = {
         let lbl = UILabel()
@@ -46,14 +56,21 @@ class ExpandableCell: UITableViewCell {
     
     //MARK: - Setup Layout
     private func setupLayout() {
-        [titleLabel, subtitleLabel].forEach({ contentView.addSubview($0) })
+        [titleLabel, buttonLink, subtitleLabel].forEach({ contentView.addSubview($0) })
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15),
+//            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15),
 //            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
+        ])
+        
+        buttonLink.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonLink.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -5),
+            buttonLink.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
+//            buttonLink.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ])
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +80,12 @@ class ExpandableCell: UITableViewCell {
             subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ])
+        
+        buttonLink.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+    }
+    
+    @objc private func btnTapped() {
+        delegate?.didTapButton()
     }
     
     //MARK: - Set data to the cell

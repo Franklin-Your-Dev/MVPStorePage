@@ -24,6 +24,13 @@ class ViewController: UIViewController {
 
 class InnerTableView: UITableView {
     override var intrinsicContentSize: CGSize {
-        return self.contentSize
+        self.layoutIfNeeded()
+        return CGSize(width: self.contentSize.width, height: self.contentSize.height)
+    }
+    
+    override var contentSize: CGSize {
+        didSet{
+            self.invalidateIntrinsicContentSize()
+        }
     }
 }

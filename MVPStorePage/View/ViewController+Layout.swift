@@ -10,9 +10,9 @@ import UIKit
 
 // MARK: UI
 extension ViewController {
-//    func initViews() {
-//        configureTableView()
-//    }
+    func initViews() {
+        configureTableView()
+    }
 }
 
 // MARK: TableView

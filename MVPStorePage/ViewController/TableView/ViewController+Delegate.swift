@@ -20,48 +20,43 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ExpandableCell
             cell.backgroundColor = .blue
+            cell.delegate = self
             cell.set(content[indexPath.row])
             return cell
-            //      cell.onTapCallback = {
-            //
-            //        let lastScrollOffset = tableView.contentOffset
-            //
-            //        tableView.beginUpdates()
-            //        tableView.reloadRows(at: [indexPath], with:.automatic)
-            //        tableView.endUpdates()
-            //
-            //        tableView.layer.removeAllAnimations()
-            //        tableView.setContentOffset(lastScrollOffset, animated: false)
-            //
-            //      }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstTableCellId", for: indexPath) as! FaceTableViewCell
-            cell.callback = {
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [indexPath], with:.automatic)
-                tableView.endUpdates()
-                self.loadViewIfNeeded()
-            }
+            cell.delegate = self
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            tableView.deselectRow(at: indexPath, animated: true)
             content[indexPath.row].expanded.toggle()
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
 }
 
+extension ViewController: DynamicInsertDelegate {
+    func added() {
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        tableView.endUpdates()
+    }
+}
+
+extension ViewController: ExpandableDelegate {
+    func didTapButton() {
+        let alert = UIAlertController(title: "Mensagem", message: "Você clicou no botão", preferredStyle: .alert)
+        let done = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(done)
+        present(alert, animated: true)
+    }
+}
