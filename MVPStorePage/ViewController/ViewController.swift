@@ -8,21 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-  let tableView = UITableView()
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupView()
-  }
-
-  func setupView() {
-    configureTableView()
-  }
+    
+    let tableView = UITableView()
+    var content: [ExpandableContent] = ExpandableContent.generate()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
+    
+    func setupView() {
+        configureTableView()
+    }
 }
 
 class InnerTableView: UITableView {
-  override var intrinsicContentSize: CGSize {
-    return self.contentSize
-  }
+    override var intrinsicContentSize: CGSize {
+        return self.contentSize
+    }
 }

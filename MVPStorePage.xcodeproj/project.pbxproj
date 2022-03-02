@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DDAF06B27CFCAFD005B58E0 /* ExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDAF06A27CFCAFD005B58E0 /* ExpandableCell.swift */; };
 		968CF2B727C646950002B91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CF2B627C646950002B91F /* AppDelegate.swift */; };
 		968CF2B927C646950002B91F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CF2B827C646950002B91F /* SceneDelegate.swift */; };
 		968CF2BB27C646950002B91F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968CF2BA27C646950002B91F /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DDAF06A27CFCAFD005B58E0 /* ExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCell.swift; sourceTree = "<group>"; };
 		968CF2B327C646950002B91F /* MVPStorePage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVPStorePage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		968CF2B627C646950002B91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		968CF2B827C646950002B91F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				968CF2D827C697CA0002B91F /* ViewController+Delegate.swift */,
+				8DDAF06A27CFCAFD005B58E0 /* ExpandableCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				968CF2D227C6675E0002B91F /* YDCollapseView+Animation.swift in Sources */,
 				968CF2BB27C646950002B91F /* ViewController.swift in Sources */,
 				968CF2B727C646950002B91F /* AppDelegate.swift in Sources */,
+				8DDAF06B27CFCAFD005B58E0 /* ExpandableCell.swift in Sources */,
 				96EFD2B227CBCEB2004C658A /* FaceTableViewCell.swift in Sources */,
 				968CF2D627C697320002B91F /* ViewController+Layout.swift in Sources */,
 				968CF2D927C697CA0002B91F /* ViewController+Delegate.swift in Sources */,

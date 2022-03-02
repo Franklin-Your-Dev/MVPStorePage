@@ -14,15 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-    if #available(iOS 13, *) {
+//    if #available(iOS 13, *) {
 
-    } else {
+//    } else {
       self.window = UIWindow(frame: UIScreen.main.bounds)
       let vc = ViewController()
       self.window?.rootViewController = vc
       self.window?.makeKeyAndVisible()
 
-    }
+//    }
 
     return true
   }

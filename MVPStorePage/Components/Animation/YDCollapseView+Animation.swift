@@ -21,13 +21,14 @@ extension YDCollapseView {
 
 // MARK: openCollapse
 extension YDCollapseView {
-  func openCollapse() {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-      self.collapseHeightContraint.constant = 292
-      self.onTapCallback?()
+    func openCollapse() {
+        self.collapseHeightContraint.constant = 292
+        self.onTapCallback?()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.viewOpen.layoutIfNeeded()
+        }
     }
-  }
 }
 
 extension YDCollapseView {
