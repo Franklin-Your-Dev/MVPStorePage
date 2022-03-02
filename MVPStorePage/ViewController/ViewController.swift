@@ -9,11 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  let tableView = UITableView()
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    setupView()
   }
 
-
+  func setupView() {
+    configureTableView()
+  }
 }
 
+class InnerTableView: UITableView {
+  override var intrinsicContentSize: CGSize {
+    return self.contentSize
+  }
+}
