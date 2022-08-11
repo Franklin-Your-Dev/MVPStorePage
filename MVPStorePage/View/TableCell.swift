@@ -88,15 +88,13 @@ class TableCell: UITableViewCell {
   }
 
   @objc private func btnTapped() {
+    cellCollapse ? updateNumberOfLines(lines: 1) : updateNumberOfLines(lines: 0)
+  }
 
-    if cellCollapse {
-      label.numberOfLines = 1
-      cellCollapse.toggle()
-    } else {
-      label.numberOfLines = 0
-      cellCollapse.toggle()
-    }
+  func updateNumberOfLines(lines: Int) {
+    label.numberOfLines = lines
 
+    cellCollapse.toggle()
     callbackButton?()
   }
 
