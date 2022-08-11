@@ -8,6 +8,13 @@
 import UIKit
 
 class TableCell: UITableViewCell {
+  let img = UIImageView()
+
+  lazy var imgHeightConstraint: NSLayoutConstraint = {
+    img.heightAnchor.constraint(equalToConstant: 100)
+  }()
+
+
   let label: UILabel = {
     let label = UILabel()
     label.textColor = UIColor.black
@@ -26,11 +33,29 @@ class TableCell: UITableViewCell {
   }
 
   func setupView(){
-    addSubview(label)
+    img.backgroundColor = .green
+    contentView.addSubview(img)
+    img.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      img.topAnchor.constraint(equalTo: contentView.topAnchor),
+      img.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      img.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      imgHeightConstraint
+    ])
+
+    contentView.addSubview(label)
     label.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      label.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-      label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
+      label.topAnchor.constraint(equalTo: img.bottomAnchor, constant: 15),
+      label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+      label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant:  -15)
     ])
   }
+
+  func updateSizeImage(ratio: CGFloat, onCompletion completion: (() -> Void)? = nil) {
+    imgHeightConstraint.constant = contentView.frame.size.width / ratio
+    completion?()
+  }
 }
+
+
