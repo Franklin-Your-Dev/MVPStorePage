@@ -16,7 +16,7 @@ class FaceTableViewCell: UITableViewCell {
   var myTableView = InnerTableView()
   var delegate: DynamicInsertDelegate?
   var list = [
-    ModelItem(img: "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg", label: "imagem 1"),
+    ModelItem(img: "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg", label: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker."),
     ModelItem(img: "https://www.w3schools.com/w3css/img_lights.jpg", label: "imagem 2"),
     ModelItem(img: "https://images.unsplash.com/photo-1509266272358-7701da638078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=986&q=80", label: "imagem 3"),
     ModelItem(img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80", label: "imagem 4"),
@@ -93,6 +93,15 @@ extension FaceTableViewCell: UITableViewDataSource, UITableViewDelegate {
 
         self.delegate?.reloadData()
       }
+
+      cell.callbackButton = {
+        tableView.performBatchUpdates {
+          cell.layoutIfNeeded()
+        }
+
+        self.delegate?.reloadData()
+      }
+
     }
 
     return cell
