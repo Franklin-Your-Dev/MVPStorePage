@@ -87,9 +87,10 @@ extension FaceTableViewCell: UITableViewDataSource, UITableViewDelegate {
       let ratio = width / height
 
       cell.updateSizeImage(ratio: ratio) {
-        tableView.beginUpdates()
-        cell.layoutIfNeeded()
-        tableView.endUpdates()
+        tableView.performBatchUpdates {
+          cell.layoutIfNeeded()
+        }
+
         self.delegate?.reloadData()
       }
     }
@@ -114,11 +115,11 @@ extension FaceTableViewCell: UITableViewDataSource, UITableViewDelegate {
   }
 
   @objc private func addItens() {
-    myTableView.beginUpdates()
-    let last = ModelItem(img: "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg.img.jpg", label: "Imagem 6")
-    list.append(last)
-    delegate?.added(in: myTableView, data: list.count - 1)
-    myTableView.endUpdates()
+    myTableView.performBatchUpdates {
+      let last = ModelItem(img: "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg.img.jpg", label: "Imagem 6")
+      list.append(last)
+      delegate?.added(in: myTableView, data: list.count - 1)
+    }
   }
 }
 

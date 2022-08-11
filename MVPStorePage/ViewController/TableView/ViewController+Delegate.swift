@@ -46,15 +46,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ViewController: DynamicInsertDelegate {
   func reloadData() {
-    tableView.beginUpdates()
-    tableView.endUpdates()
+    tableView.performBatchUpdates(nil)
   }
 
   func added(in table: UITableView, data: Int) {
-    tableView.beginUpdates()
-    table.insertRows(at: [IndexPath(row: data, section: 0)], with: .automatic)
-    tableView.reloadData()
-    tableView.endUpdates()
+    tableView.performBatchUpdates {
+      table.insertRows(at: [IndexPath(row: data, section: 0)], with: .automatic)
+      tableView.reloadData()
+    }
   }
 }
 
